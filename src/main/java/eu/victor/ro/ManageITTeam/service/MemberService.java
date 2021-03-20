@@ -1,5 +1,6 @@
 package eu.victor.ro.ManageITTeam.service;
 
+import eu.victor.ro.ManageITTeam.exception.MemberNotFoundException;
 import eu.victor.ro.ManageITTeam.model.Member;
 import eu.victor.ro.ManageITTeam.repo.MemberRepo;
 import org.springframework.beans.factory.annotation.Autowired;
