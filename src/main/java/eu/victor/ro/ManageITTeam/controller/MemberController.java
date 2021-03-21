@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -55,8 +56,10 @@ public class MemberController {
     }
 
     // Delete a member - it will be a DELETE Request
-    @PutMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     // "?" means that it returns void
+    @Transactional
+    // I could not delete without "@Transactional" annotation
     public ResponseEntity<?> deleteMember(@PathVariable("id") Long id){
         memberService.deleteMember(id);
         return new ResponseEntity<>(HttpStatus.OK);
