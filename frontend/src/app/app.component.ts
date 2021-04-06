@@ -70,6 +70,21 @@ export class AppComponent implements OnInit {
     );
   }
 
+  public searchMembers(key: string): void{
+    //to store the members that match the "key"
+    const results: Member[] = [];
+    for(const member of this.members){
+      if(member.name.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) !== -1 ||  member.email.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) !== -1 ||
+        member.phone.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) !== -1 ||  member.jobTitle.toLocaleLowerCase().indexOf(key.toLocaleLowerCase()) !== -1){
+        results.push(member);
+      }
+    }
+    this.members=results;
+    if(results.length === 0 || !key){
+      this.getMembers();
+    }
+  }
+
   // SEE BOOTSTRAP MODAL FOR MORE INFORMATION
   //member-> the member that I use
   //mode -> what I want to do with this member, in order to know which modal I open
